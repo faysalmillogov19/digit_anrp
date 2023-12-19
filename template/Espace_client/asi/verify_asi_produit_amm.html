@@ -1,0 +1,57 @@
+<div class="modal fade" id="VerifyAMM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Verification des AMM</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="modal-body">
+                  {% csrf_token %}
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Categorie</label>
+                    <select type="number" class="form-control" id="categorie" required>
+                      {% for ct in categories %}
+                        <option value="{{ct}}">{{ct.libelle}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputPatientName">Dénomination commerciale *</label>
+                    <input list="ListProduit" type="text" name="dc" class="form-control" id="dc_produit" required>
+                    <datalist id="ListProduit">
+                    </datalist>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="inputPatientName">Forme </label>
+                    <input list="ListFORME" type="text" name="forme" class="form-control" id="forme" >
+                    <datalist id="ListFORME"></datalist>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputPatientName">Dosage *</label>
+                    <input list="ListDOSAGE" type="text" name="dosage" class="form-control" id="dosage" required>
+                    <datalist id="ListDOSAGE"></datalist>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputPatientName">Presentation</label>
+                    <input list="ListPRESENTATION" type="text" name="presentation" class="form-control" id="presentation" placeholder="" required>
+                    <datalist id="ListPRESENTATION"></datalist>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputPatientName">RESULTAT</label>
+                    <input type="text" name="result" class="form-control" placeholder="" >
+                  </div>
+
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Enregister</button>
+                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+                  </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

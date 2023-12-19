@@ -1,0 +1,61 @@
+{% extends 'ASI/add_asi.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add_asi %}
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                          <h6 class="float-left">Liste des produits de la demande</h6>
+                          {% if id_asi %}
+                            <a class="btn btn-info float-right" href="{% url 'asi_new_produit' id_asi %}">AJOUTER<i class="fa fa-plus"></i></a>
+                          {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Dénomination commerciale</th>
+                                            <th>Catégorie</th>
+                                            <th>Dosage</th>
+                                            <th>Presentation</th>
+                                            <th>Quantité</th>
+                                            <th>Prix</th>
+                                            <th>AMM</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for p in produits %}
+                                        <tr>
+                                            <td>{{p.dc}}</td>
+                                            <td>{{p.categorie.libelle|slice:":20"}}...</td>
+                                            <td>{{p.dosage}}</td>
+                                            <td>{{p.presentation}}</td>
+                                            <td>{{p.quantite}}</td>
+                                            <td>{{p.cout}}</td>
+                                            <td class="text-center">
+                                                {% if p.amm %}
+                                                  <i class="fa fa-check" style="color: green;"> </i>
+                                                {% else %}
+                                                    <i class="fa fa-times" style="color: red;"> </i>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a type="button" class="btn btn-outline-success" href="{% url 'set_produit' p.id %}" ><i class="fas fa-pen">&#xf303;</i></a>
+                                                <a type="button" class="btn btn-outline-danger" href="{% url 'delete_produit' p.id %}"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer py-3">
+                          {% if id_asi %}
+                            <a class="button-2 float-right" href="{% url 'asi_expediteur' id_asi %}">SUIVANT <i class="fa fa-angle-double-right"></i></a>
+                          {% endif %}
+                        </div>
+                    </div>
+
+{% endblock %}

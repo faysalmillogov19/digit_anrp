@@ -1,0 +1,36 @@
+ {% extends 'layout/FrontLayout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+
+  <!-- book section -->
+
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form method="POST" action="{% url 'add_adi' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>
+              Demande d’<span>Attestation Dérogatoire d’Importation (ADI)</span>
+            </h4>
+            <div class="form-row ">
+              <div class="form-group col-lg-6">
+                <label for="inputDoctorName">facture proforma</label>
+                <input type="file" name="fichier" class="form-control wide" id="inputDoctorName" accept="application/pdf" required>
+                  
+              </div>
+            </div>
+            <div class="btn-box">
+              <button type="submit" class="btn ">Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  {% endblock %}

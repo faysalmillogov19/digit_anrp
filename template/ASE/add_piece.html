@@ -1,0 +1,30 @@
+{% extends 'ASE/add.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add %}
+<form class="container" method="POST" {% if id_asi %} action="{% url 'ase_pieces_jointes' id_demande %}" {% endif %} enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>
+              Demande d’<span>Autorisation Spéciale d’Exportation (ASE)</span>
+            </h4> 
+            <div class="form-row">
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Code facture proforma</label>
+                <input name="code_facture" class="form-control wide" id="inputDoctorName" {% if element.code_facture %} value="{{ element.code_facture }}" {% endif %} required>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Copie facture proforma</label>
+                <input type="file" name="facture_proforma" class="form-control wide" id="inputDoctorName" accept="application/pdf" {% if not element.facture_proforma %} required {% endif %}>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Copie ASI</label>
+                <input type="file" name="copie_asi" class="form-control wide" id="inputDoctorName" accept="application/pdf" {% if not element.copie_asi %} required {% endif %}>
+              </div>
+              
+            </div>
+            <div class="card-footer py-3">
+              <a  class="button-1 float-left" href="{% url 'ase_expediteur' id_demande %}" style=""><i class="fa fa-angle-double-left"></i> RETOUR</a> 
+              <button class="button-2 float-right" > SUIVANT <i class="fa fa-angle-double-right"></i></button>
+            </div>
+          </form>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'dpi/add.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add %}
+<form class="container" method="POST" {% if id_demande %} action="{% url 'dpi_expediteur' id_demande %}" {% endif %} enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>
+              <span>Déclaration Préalable d’Importation (DPI)</span>
+            </h4>            
+              
+            <div class="form-row ">
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Type expéditeur </label>
+                <select name="type_expediteur" class="form-control wide" required>
+                  <option value="{{element.type_expediteur.id}}">{{element.type_expediteur.libelle}}</option>
+                  {%for ex in type_expediteurs %}
+                  <option value="{{ex.id}}">{{ex.libelle}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Nom expéditeur </label>
+                <input type="text" name="nom_expediteur" class="form-control" {% if element.nom_expediteur is not None %} value="{{element.nom_expediteur}}" {% endif %}  max="50" required>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Adresse expéditeur </label>
+                <input name="adresse_expediteur" class="form-control wide" {% if element.adresse_expediteur is not None %} value="{{element.adresse_expediteur}}" {% endif %}  max="50" required>
+              </div>            
+            </div>
+            <div class="form-row ">
+              
+              <div class="form-group col-lg-4">
+                <label for="inputSymptoms">Nom transitaire</label>
+                <input type="text" name="nom_transitaire" {% if element.nom_transitaire is not None %} value="{{element.nom_transitaire}}" {% endif %} class="form-control" max="50">
+              </div>
+              <div class="form-group col-lg-4">
+                <label >Adresse transitaire</label>
+                  <input type="text" class="form-control" name="adresse_transitaire" {% if element.adresse_transitaire is not None %} value="{{element.adresse_transitaire}}" {% endif %} max="50" required>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Voie d'entrée </label>
+                <select name="voie" class="form-control wide" required>
+                  <option value="{{element.voie_entree.id}}">{{element.voie_entree.libelle}}</option>
+                  {%for v in voies %}
+                  <option value="{{v.id}}">{{v.libelle}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="card-footer py-3">
+              <a  class="button-1 float-left" href="{% url 'dpi_list_produit' id_demande %}" style=""><i class="fa fa-angle-double-left"></i> RETOUR</a> 
+              <button class="button-2 float-right" > SUIVANT <i class="fa fa-angle-double-right"></i></button>
+            </div>
+          </form>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+<div class="modal fade" id="TreatASI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Demande N° {{datum.date_soumission|date:"dmY"}}{{datum.id}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="modal-body" method="POST" action="{% url 'treat_ase' datum.id %} ">
+                  {% csrf_token %}
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Demandeur</label>
+                    <input type="text" class="form-control" value="{{datum.demandeur.user.first_name}} {{datum.demandeur.structure}}"  disabled>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Expediteur</label>
+                    <input type="text" class="form-control" value="{{datum.type_expediteur.libelle}} : {{datum.nom_expediteur}}"  disabled>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Voie d'entrée </label>
+                    <input type="text" class="form-control" value="{{datum.voie_entree.libelle}} : {{datum.nom_expediteur}}"  disabled>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Nature</label>
+                    {% if datum.nature_impression %}
+                      <input disabled class="form-control" value="{{datum.nature_impression.libelle}}">
+                    {% endif %}
+                    <label for=""></label>
+                    {%if can_treat %}
+                    <select class="form-control" name="nature" required>
+                      <option disabled></option>
+                      {% for nat in natures %}
+                        <option value="{{nat.id}}">{{nat.libelle}}</option>
+                      {% endfor %}
+                    </select>
+                    {%endif %}
+                  </div>
+                  
+
+                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Etape</label>
+                    <input disabled class="form-control" value="{{datum.statut.libelle}}">
+                    <label for=""></label>
+                    <select type="number" class="form-control" name="statut" required>
+                      <option disabled></option>
+                      {% for st in statut %}
+                        <option value="{{st.id}}">{{st.libelle}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Commentaire *</label>
+                    <textarea class="form-control" name="commentaire" placeholder="" required></textarea>
+                  </div>
+
+
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Enregister</button>
+                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+                  </div>
+
+                  
+      </form>
+            
+        </div>
+    </div>
+</div>

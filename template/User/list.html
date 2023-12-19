@@ -1,0 +1,53 @@
+ {% extends 'layout/EspaceClient.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Utilisateur</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Email</th>
+                                            <th>Etat</th>
+                                            <th>Profil</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for d in data %}
+                                        <tr>
+                                            <td>{{d.first_name}}</td>
+                                            <td>{{d.email}}</td>
+                                            <td>
+                                                {% if d.is_active %}
+                                                  <i class="fa fa-check" style="color: green;"> </i>
+                                                {% else %}
+                                                    <i class="fa fa-times" style="color: red;"> </i>
+                                                {% endif %}
+                                            </td>
+                                            <td class="col_profil fp_{{d.id}}" id="{{d.id}}">
+                                                
+                                            </td>
+                                            <td>
+                                                <button type="button" data-toggle="modal" data-target="#Profils{{d.id}}" class="btn btn-outline-info"><i class="fas fa-address-card"></i></button>
+                                                
+                                                 <button type="button" data-toggle="modal" data-target="#ChangeStatut{{d.id}}" class="btn btn-outline-warning"><i class="fas fa-ban"></i></button>
+
+                                            </td>
+                                        </tr>
+                                        {% include  'User/change_state.html' %}
+                                        {% include  'User/profils.html' %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+  {% endblock %}

@@ -1,0 +1,88 @@
+ {% extends 'layout/EspaceClient.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4 text-dark">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">REJET</h6>
+                            <div class="float-right">
+                                <button class="btn btn-primary"><i class="fa fa-print" onclick="printPageArea('printableArea')"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body" id="printableArea">
+                            <div>
+                                <div class="row" style="font-size: 13px;">
+                                    <div class="col-4 text-center">
+                                        MINISTERE DE LA SANTE <br>
+                                        -------------------- <br>
+                                        SECRETARIAT GENERAL<br>
+                                        -------------------- <br>
+                                        AGENCE NATIONALE DE REGULATION PHARMACEUTIQUE (ANRP) <br>
+                                        -------------------- <br>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="{% static 'images/logo-msante.png' %}" alt="..." class="rounded float-center">
+                                    </div>
+                                    <div class="col-4 float-right">
+                                        <p class="text-center">
+                                            BURKINA FASO <br>
+                                            --------------------- <br>
+                                            Unité - Progrès - gustice
+                                        </p>
+                                        <br><br>
+                                        <p>
+                                            Ouagadougou, le
+                                        </p>
+
+                                    </div>
+                                    <div style="border: 1px;border-style: double; width: 95%; padding: 2%; margin: 5%;">
+                                        <h4 class="text-center font-weight-bold">REJET DE DEMANDE</h4>
+                                    </div>
+                                    
+                                </div>
+                                <div class="display-6 text-justify" style="  font-size: 14px;">
+                                        <span class="font-weight-bold">Le ministre de la santé <br></span>
+                                        VU la constitution ;<br>
+                                        VU la loi n°23/94/ADP du 19 mai 1994 portant code de la santé publique<br>
+                                        VU le décret n°2021- 0001/PRES du 5 janvier 2021 portant nomination du premier ministre ; <br>
+                                        VU le décret n°2021- 0002/PRES/PM du 10 janvier 2021 portant composition du gouvernement ; <br>
+                                        VU le décret n°2018-861/PRES/PM/MINEFID/MS du 05 Octobre 2018 portant créëtion de l'Agence Nationale de Régulation Pharmaceutique en abrégé ANRP ; <br>
+                                        VU le décret n°2018-0911/PRES/PM/MINEFID/MS du 18/10/2018 portant approbations des statuts particuliers de l'Agence Nationale de Régulation Pharmaceutique (ANRP) ; <br>
+                                        VU le règlement n° 06/2010/CM/UEMOA du 1er octobre 2010 relatif aux procédures d'homologation des produits pharmaceutiques à usage humain dans les états membres de l'UEMOA <br>
+                                        VU le décret n° 2003-382/PRES/PM/MS/MFB/MCPEA portant nomenclature nationale des spécialités pharmaceutiques et médicaments génériques autorisés au Burkina Faso ; <br>
+                                        VU le décret n° 2008-524/PRES/PM/MS/MEF/ du 09 septembre 2008 portant règlement de .lfimportation, de la détention et de la distribution des médicaments obtenus par don et des échantillons médicaux ; <br>
+                                        VU l'arrêté N° 2013-537/MS/CAB du 31/09/2013 portant réglementation des dispositifs médicaux de diagnostic in vitro (DMDIV) et des consommables médicaux <br>
+
+                                </div>
+                                <div style="font-size: 15px;">
+                                    <br>
+                                    <p>
+                                        Par DIRECTION DE L'INSPECTION PHARMACEUTIQUE/ANRP, 03 BP 7009 OUAGADOUGOU 03, Tel: 25 32 46 60,  
+                                    </p>  
+                                    <p>
+                                        La demande N° <span class="font-weight-bold">{{datum.date_soumission|date:"dmY"}}{{datum.id}}</span>  pour <span class="font-weight-bold">{{libelle_demande}}</span> datée du <span class="font-weight-bold">{{datum.date_soumission|date:"d/m/Y"}}</span>,
+                                        effectué par <span class="font-weight-bold">{{datum.demandeur.user.first_name}}</span>  est non approuvée et par conséquent rejettée.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12"><br></div>
+                            <div class="table-responsive" style="font-size: 15px;">
+                              
+                                <div class="">
+                                    <div class=""></div>
+                                        <div class="float-right">
+                                            <p class="text-center">
+                                                {{signataire.fonction}}
+                                            </p>
+                                            <img src="{% static signataire.signature %}" class="img-responsive img-rounded text-center" style="max-height: 100px; max-width: 100px;">
+                                            <p class="text-center">
+                                                {{signataire.nom_signataire}}
+                                            </p>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+  {% endblock %}

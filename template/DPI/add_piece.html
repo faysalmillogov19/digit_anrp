@@ -1,0 +1,30 @@
+{% extends 'dpi/add.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add %}
+<form class="container" method="POST" {% if id_asi %} action="{% url 'dpi_pieces_jointes' id_demande %}" {% endif %} enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>
+              <span>Déclaration Préalable d’importation (DPI)</span>
+            </h4> 
+            <div class="form-row">
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Code facture proforma</label>
+                <input name="code_facture" class="form-control wide" id="inputDoctorName" {% if element.code_facture %} value="{{ element.code_facture }}" {% endif %} required>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Copie facture proforma</label>
+                <input type="file" name="facture_proforma" class="form-control wide" id="inputDoctorName" accept="application/pdf" {% if not element.facture_proforma %} required {% endif %}>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Attestation de don (Cas de de don)</label>
+                <input type="file" name="certificat_atestation_don" class="form-control wide" id="inputDoctorName" accept="application/pdf" >
+              </div>
+              
+            </div>
+            <div class="card-footer py-3">
+              <a  class="button-1 float-left" href="{% url 'dpi_expediteur' id_demande %}" style=""><i class="fa fa-angle-double-left"></i> RETOUR</a> 
+              <button class="button-2 float-right" > SUIVANT <i class="fa fa-angle-double-right"></i></button>
+            </div>
+          </form>
+{% endblock %}

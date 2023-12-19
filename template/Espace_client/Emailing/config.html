@@ -1,0 +1,80 @@
+ {% extends 'layout/EspaceClient.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+     <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+                    <div class="card">
+                        <!-- Nested Row within Card Body -->
+                        <div class="container">
+                            <div class="card-header bg-primary">
+                                    <h1 class="text-center text-white mb-8">Configuration du Serveur de Messagerie</h1>
+                            </div>
+                                    
+                                        <form class="card-body" method="post" action="{% url 'config_email' %}" >
+
+                                            {% csrf_token %}
+
+                                                <div class="form-group">
+                                                  <label>Email</label>
+                                                  <input type="email" class="form-control" placeholder="Email *" aria-label="email" {% if config.email %} value="{{config.email}}" {% endif %} name="email" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                  <label>Username</label>
+                                                  <input type="text" class="form-control" {% if config.username %} value="{{config.username}}" {% endif %}  name="username" >
+                                                </div>
+
+                                                <div class="form-group">
+                                                  <label>URL du SERVER</label>
+                                                  <input type="text" class="form-control"  {% if config.email %} value="{{config.server_url}}" {% endif %}  name="server_url" required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                  <label>Protocole</label>
+                                                  <select class="form-control" name="protocole"  required>
+                                                    {% if config.protocole %}
+                                                        <option value="{{config.protocole.id}}">{{config.protocole.nom}}</option>
+                                                    {% endif %}
+                                                    
+                                                    {% for p in protocoles %}
+                                                        <option value="{{p.id}}">{{p.nom}}</option>
+                                                    {% endfor %}
+                                                  </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                  <label>PORT</label>
+                                                  <input type="number" class="form-control" {% if config.port %} value="{{config.port}}" {% endif %} name="port" >
+                                                </div>
+                                                                                                
+                                                <div class="form-group">
+                                                  <label>Password</label>
+                                                  <input  type="password" class="form-control" name="password"  required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                   <button class="btn btn-primary float-right">Enregistrer</button>
+                                                   <br>
+                                                </div>
+
+
+                                           
+                                        </form>
+                                                        
+                        </div>
+                    </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+ {% endblock %}

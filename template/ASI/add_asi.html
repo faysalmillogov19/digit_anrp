@@ -1,0 +1,33 @@
+ {% extends 'layout/FrontLayout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+
+  <!-- book section -->
+
+  <section class="book_section layout_padding">
+    <div class="card">
+      <div class="row">
+        <div class="col-lg-3">
+          <ul class="list-group">
+            <li class="list-group-item success">Suivi</li>
+
+            <li class="list-group-item"><a class="btn btn-outline-success" {% if id_asi %} href="{% url 'asi_list_produit' id_asi %}" {% endif %}> Produits <i class="bi bi-prescription"></i></a></li>
+            <li class="list-group-item"><a class="btn btn-outline-info" {% if id_asi %} href="{% url 'asi_expediteur' id_asi %}" {% endif %}> Expédition <i class="fa fa-ambulance"></i> </a> </li>
+            <li class="list-group-item"><a class="btn btn-outline-primary" {% if id_asi %} href="{% url 'asi_pieces_jointes' id_asi %}" {% endif %}> Pièces Jointes <i class="fa fa-file"></i></a> </li>
+            <li class="list-group-item "></li>
+
+          </ul>
+          
+        </div>
+        <div class="col-lg-8">
+          {% block add_asi %} {% endblock %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  {% endblock %}

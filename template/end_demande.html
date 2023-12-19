@@ -1,0 +1,31 @@
+ {% extends 'layout/FrontLayout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+
+  <!-- book section -->
+
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img class="img-fluid" src="{%static 'images/logo-2.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+            <br><br><br>
+            <p class="text-center">Demande enregristré avec succès !!!!!</p>
+            <p class="text-center">Consulter votre boite mail pour les détails.</p>
+            <hr>
+            <a  class="button-2 float-right" href="{% url 'index' %}" style=""><i class="fa fa-angle-double-left"></i> Clicker ici pour revenir à l'accueil !!</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+
+
+  {% endblock %}

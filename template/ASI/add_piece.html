@@ -1,0 +1,42 @@
+{% extends 'ASI/add_asi.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add_asi %}
+<form class="container" method="POST" {% if id_asi %} action="{% url 'asi_pieces_jointes' id_asi %}" {% endif %} enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>
+              Demande <span>Autorisation Spéciale d’Importation (ASI)</span>
+            </h4>
+            <div class="form-row">
+              
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">facture proforma</label>
+                <input type="file" name="facture_proforma" class="form-control wide" id="inputDoctorName" accept="application/pdf" {% if proforma_exist %}required {% endif %}>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Certicat de bonne pratique</label>
+                <input type="file" name="certicat_bonne_pratique" class="form-control wide" id="inputDoctorName" accept="application/pdf" {% if bp_exist %} required {% endif %}>
+              </div>
+              {% if sans_amm %}
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Certificat analyse produit</label>
+                <input type="file" name="certificat_analyse_prod" class="form-control wide" id="inputDoctorName" accept="application/pdf" >
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Certificat origine du produit</label>
+                <input type="file" name="certificat_origine_prod" class="form-control wide" id="inputDoctorName" accept="application/pdf" >
+              </div>
+              {% endif %}
+              {% if element.type_expediteur.id == 3 %}
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">Attestation de don (produits pour don) </label>
+                <input type="file" name="certificat_atestation_don" class="form-control wide" id="inputDoctorName" accept="application/pdf" >
+              </div>
+              {% endif %}
+            </div>
+            <div class="card-footer py-3">
+              <a  class="button-1 float-left" href="{% url 'asi_expediteur' id_asi %}" style=""><i class="fa fa-angle-double-left"></i> RETOUR</a> 
+              <button class="button-2 float-right" > SUIVANT <i class="fa fa-angle-double-right"></i></button>
+            </div>
+          </form>
+{% endblock %}

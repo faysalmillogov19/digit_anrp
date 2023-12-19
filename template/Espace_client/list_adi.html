@@ -1,0 +1,38 @@
+ {% extends 'layout/EspaceClient.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+                    <!-- DataTales Example -->
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <li class="list-group-item text-center bg-primary text-white">
+                                ADI
+                              </li>
+                            <ul class="list-group">
+                              {%for d in data%}
+                              <li class="list-group-item text-center">
+                               <mark>Facture proforma</mark>: <button class="btn btn-outline-warning facture_proforma" value="{{d.facture_proforma.url}}"><i class="fa fa-eye"></i></button>
+                              </li>
+                              {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            
+                            <div class="card">
+                                <div class="card-header">
+                                  <h3 class="card-title">Pièces Jointes</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                  <object data="/media/{{datum.facture_proforma}}" id="pdf_reader" class="border border-primary" type="application/pdf" width="100%" height="600px">
+                                  <p class="text-center">Ce fichier est introuvable /media/{{datum.facture_proforma | safe}}</p>
+                                 </object>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+  {% endblock %}

@@ -1,0 +1,80 @@
+ {% extends 'layout/FrontLayout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+
+  <!-- book section -->
+
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form method="POST" action="{% url 'add_ari' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>
+              Demande <span>Autorisation retrait Inspection (ARI)</span>
+            </h4>
+            <div class="form-row ">
+              <div class="form-group col-lg-6">
+                <label for="inputPatientName">Nom fournisseur </label>
+                <input type="text" name="nom_fournisseur" class="form-control" id="inputPatientName" placeholder="" required>
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="inputDoctorName">Adresse fournisseur</label>
+                <input name="adresse_fournisseur" class="form-control wide" id="inputDoctorName" required>
+              </div>            
+            </div>
+            <div class="form-row ">
+              <div class="form-group col-lg-6">
+                <label for="inputDepartmentName">Nom fabricant</label>
+                <input name="nom_fabricant" class="form-control wide" id="inputDepartmentName" required>
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="inputPhone">Adresse fabricant</label>
+                <input type="text" name="adresse_fabricant" class="form-control" id="inputPhone" placeholder="" required>
+              </div>
+            </div>
+            <div class="form-row ">
+              
+              <div class="form-group col-lg-6">
+                <label for="inputSymptoms">Nom transitaire</label>
+                <input type="text" name="nom_transitaire" class="form-control" id="inputSymptoms" placeholder="">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="inputDate">Adresse transitaire</label>
+                <div class="input-group date" id="inputDate">
+                  <input type="text" class="form-control" name="adresse_transitaire" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-row ">
+              <div class="form-group col-lg-4">
+                <label for="inputPhone">Voie d'entrée</label>
+                <select name="voie" class="form-control wide" id="inputDoctorName" required>
+                  {%for v in voies%}
+                  <option value="{{v.id}}">{{v.libelle}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">facture proforma</label>
+                <input type="file" name="proforma" class="form-control wide" id="inputDoctorName" accept="application/pdf" required>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputDoctorName">AMM</label>
+                <input type="file" name="autorisation" class="form-control wide" id="inputDoctorName" accept="application/pdf" required>
+              </div>
+            </div>
+            <div class="btn-box">
+              <button type="submit" class="btn ">Soumettre</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  {% endblock %}

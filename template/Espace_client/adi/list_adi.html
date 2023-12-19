@@ -1,0 +1,52 @@
+ {% extends 'layout/EspaceClient.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">ADI</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Etape</th>
+                                            <th>Statut</th>
+                                            <th>Demandeur</th>
+                                            <th>Total items</th>
+                                            <td>Expediteur</td>
+                                            <th>Transitaire</th>
+                                            <th>Voie</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for d in data %}
+                                        <tr>
+                                            <td>{{d.statut.libelle}}</td>
+                                            <td>
+                                                {% if d.nature_impression %}
+                                                    {{d.nature_impression.libelle}}
+                                                {% endif %}
+                                            </td>
+                                            <td>{{d.demandeur.user.first_name}}</td>
+                                            <td>{{d.total_item}}</td>
+                                            <td>{{d.nom_expediteur}}</td>
+                                            <td>{{d.nom_transitaire}}</td>
+                                            <td>{{d.voie_entree.libelle}}</td>
+                                            <td>{{d.date_soumission|date:"d-m-Y"}}</td>
+                                            <td>
+                                                <a type="button" class="btn btn-outline-warning" href="{% url 'details_adi' d.id %}"><i class="fa fa-info"></i></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+  {% endblock %}

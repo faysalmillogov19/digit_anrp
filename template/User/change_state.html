@@ -1,0 +1,34 @@
+<div class="modal fade" id="ChangeStatut{{d.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Activation / Désactivation du Compte</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="modal-body" method="POST" action="{% url 'user_state' %} ">
+                  {% csrf_token %}
+
+                  <input type="hidden" name="id_utilisateur" value="{{d.id}}">
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Etat</label>
+                    <select class="form-control" name="state" required>
+                        {% if d.is_active %}
+                            <option value="1">Activé</option>
+                            <option value="0">Désactivé</option>
+                        {% else %}
+                            <option value="0">Désactivé</option>
+                            <option value="1">Activé</option>
+                        {% endif %}
+                    </select>
+                  </div>
+
+
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Enregister</button>
+                    <a type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</a>
+                  </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="modal fade" id="Recepice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >        
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Recepice N°{{datum.date_soumission|date:"dmY"}}{{datum.id}}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    
+                </div>
+    
+                <div class="card-body">
+                    
+                    <object data="{{datum.facture_proforma.url}}" id="pdf_reader" class="border border-primary" type="application/pdf" width="100%" height="600px">
+                    <p class="text-center">Ce fichier est introuvable {{datum.facture_proforma.url}}</p>
+                    </object>
+                </div>
+          </div>
+        </div>
+    </div>
+</div>

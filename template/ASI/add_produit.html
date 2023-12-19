@@ -1,0 +1,67 @@
+{% extends 'ASI/add_asi.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add_asi %}
+<form class="container" method="POST" {% if id_asi %} action="{% url 'asi_new_produit' id_asi %}" {% else %} action="{% url 'asi_new_produit' 0 %}" {% endif %} enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>
+              Demande <span>Autorisation Spéciale d’Importation (ASI)</span>
+            </h4>
+            <div class="form-row">
+              <div class="form-group col-lg-4">
+                <label for="inputPhone"> Catégorie *</label>
+                <select name="categorie" class="form-control wide" id="getProduit" required>
+                  <option></option>
+                  {%for cg in categories %}
+                  <option value="{{cg.id}}">{{cg.libelle}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Dénomination commerciale *</label>
+                <input list="ListProduit" type="text" name="dc" class="form-control" id="dc_produit" required>
+                <datalist id="ListProduit">
+                </datalist>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">DCI </label>
+                <input list="ListDCI" id="dci" type="text" name="dci" class="form-control" placeholder="" >
+                <datalist id="ListDCI"></datalist>
+              </div>
+
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Forme </label>
+                <input list="ListFORME" type="text" name="forme" class="form-control" id="forme" >
+                <datalist id="ListFORME"></datalist>
+              </div>
+
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Dosage *</label>
+                <input list="ListDOSAGE" type="text" name="dosage" class="form-control" id="dosage" required>
+                <datalist id="ListDOSAGE"></datalist>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Presentation*</label>
+                <input list="ListPRESENTATION" type="text" name="presentation" class="form-control" id="presentation" placeholder="" required>
+                <datalist id="ListPRESENTATION"></datalist>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Quantité *</label>
+                <input type="number" min='0' name="quantite" class="form-control" id="inputPatientName" placeholder="" required>
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="inputPatientName">Prix *</label>
+                <input type="number" min='0' name="cout" class="form-control" id="inputPatientName" placeholder="" required>
+              </div>
+
+              <!--div class="form-group col-lg-4">
+                <label for="inputPatientName">Validité AMM *</label>
+                <input  min='0' name="amm" class="form-control" id="inputPatientName" placeholder="" required>
+              </div-->
+            </div>
+            
+            <div class="btn-box">
+              <button type="submit" class="btn ">Enregistrer</button>
+            </div>
+          </form>
+{% endblock %}

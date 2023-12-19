@@ -1,0 +1,61 @@
+ {% extends 'layout/EspaceClient.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+{% include  'Espace_client/adi/piece_details.html' %}
+{% include  'Espace_client/adi/treat.html' %}
+{% include  'Espace_client/adi/renvoie_modification.html' %}
+
+
+<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                          <div class="">
+                              <h6 class="">Liste des produits de la demande</h6>
+                          </div>
+                          <div class="">                              
+                            
+                              <a type="button" data-toggle="modal" data-target="#PieceJointe" class="btn btn-outline-info">Pieces Jointes <i class="fa fa-file"></i></a>
+
+                            {% if can_treat %}
+                              <a type="button" data-toggle="modal" data-target="#Renvoie" class="btn btn-outline-info">Renvoie modification<i class="fa fa-envelope"></i></a>
+                            {% endif %}
+                            <div class="float-right">
+                                {% if datum.statut_id == 7 %}
+                                <a type="button" href="{% url 'print_adi' datum.id %}"  class="btn btn-primary">IMPRIMER <i class="fa fa-print"></i></a>
+                                {% endif %}
+                                <a type="button" data-toggle="modal" data-target="#TreatASI" class="btn btn-primary">Traiter la demande<i class="fa fa-plus"></i></a>
+  
+                              </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre items</th>
+                                            <th>Prix</th>
+                                            <th>Code Facture</th>
+                                            <th>{{datum.type_expediteur.libelle}}</th>
+                                            <th>Transitaire</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{datum.total_item}}</td>
+                                            <td>{{datum.cout}}</td>
+                                            <td>{{datum.code_facture}}</td>
+                                            <td>{{datum.nom_expediteur}}</td>
+                                            <td>{{datum.nom_transitaire}}</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+  {% endblock %}

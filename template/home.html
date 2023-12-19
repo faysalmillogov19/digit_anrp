@@ -1,0 +1,48 @@
+ {% extends 'layout/FrontLayout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="{%static 'images/logo-2.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="" id="demandes">
+            <div class="heading_container">
+              <h2 class="text-center">
+                Portail numérique de <span>Demande</span>
+              </h2>
+              <h6 class="text-center">Démarche en ligne ANRP</h6>
+            </div>
+            <p>
+
+              <h6>Bienvenue sur le portail numérique de l'ANRP pour vos différentes opérations de:</h6>
+            
+            </p>
+            <ul class="list-group" >
+              <li class="list-group-item">Demande d’Autorisation Spéciale d’Importation (ASI) <a class="link-success float-right" href="{% url 'asi_new_produit' 0 %}" style="color: #00c6a9;">cliquer ici</a> </li>
+              <!--li class="list-group-item">Demande d’Autorisation retrait Inspection (ARI) <a href="#"  class="link-secondary float-right">cliquer ici</a></li-->
+              <li class="list-group-item">Demande d’Autorisation Spéciale d’Exportation (ASE)<a class="link-success float-right" href="{% url 'ase_new_produit' 0 %}" style="color: #00c6a9;">cliquer ici</a> </li>
+              <li class="list-group-item">Demande d’Attestation Dérogatoire d’Importation (ADI)<a class="link-success float-right" href="{% url 'add_adi' %}" style="color: #00c6a9;">cliquer ici</a></li>
+              <li class="list-group-item">Déclaration Préalable d’importation (DPI)<a class="link-success float-right" href="{% url 'dpi_new_produit' 0 %}" style="color: #00c6a9;">cliquer ici</a></li>
+            </ul>
+            <!--a href="">
+              Read More
+            </a-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  {% endblock %}

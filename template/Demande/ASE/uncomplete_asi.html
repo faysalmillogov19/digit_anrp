@@ -1,0 +1,22 @@
+{% extends 'ASI/add_asi.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add_asi %}
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                          
+                        </div>
+                        <form class="card-body">
+                            <div class="table-responsive">
+                                Le formulaire est incomplet. Veillez renseigner tous les champs obligatoires avant de soumettre !!!
+                            </div>
+
+                            <div class="card-footer py-3">
+                              <a  class="button-1 float-left" href="{% url 'asi_list_produit' id_asi %}" style=""><i class="fa fa-angle-double-left"></i> RETOUR</a> 
+                            </div>
+                        </form>
+                        
+                    </div>
+
+{% endblock %}

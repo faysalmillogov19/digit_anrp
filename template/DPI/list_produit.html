@@ -1,0 +1,53 @@
+{% extends 'dpi/add.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add %}
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                          <h6 class="float-left">Liste des produits de la demande</h6>
+                          {% if id_demande %}
+                            <a class="btn btn-info float-right" href="{% url 'dpi_new_produit' id_demande %}">AJOUTER<i class="fa fa-plus"></i></a>
+                          {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Dénomination commerciale</th>
+                                            <th>Catégorie</th>
+                                            <th>Dosage</th>
+                                            <th>Presentation</th>
+                                            <th>Quantité</th>
+                                            <th>Prix</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for p in produits %}
+                                        <tr>
+                                            <td>{{p.dc}}</td>
+                                            <td>{{p.categorie.libelle|slice:":20"}}...</td>
+                                            <td>{{p.dosage}}</td>
+                                            <td>{{p.presentation}}</td>
+                                            <td>{{p.quantite}}</td>
+                                            <td>{{p.cout}}</td>
+                                            <td>
+                                                <a type="button" class="btn btn-outline-success" href="{% url 'dpi_set_produit' p.id %}" ><i class="fas fa-pen">&#xf303;</i></a>
+                                                <a type="button" class="btn btn-outline-danger" href="{% url 'dpi_delete_produit' p.id %}"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer py-3">
+                          {% if id_demande %}
+                            <a class="button-2 float-right" href="{% url 'dpi_expediteur' id_demande %}">SUIVANT <i class="fa fa-angle-double-right"></i></a>
+                          {% endif %}
+                        </div>
+                    </div>
+
+{% endblock %}

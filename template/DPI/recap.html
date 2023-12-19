@@ -1,0 +1,50 @@
+{% extends 'dpi/add.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block add %}
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                          <h6 class="float-left">Recapitulatif de la demande</h6>
+                        </div>
+                        <form class="" method="POST" action="{% url 'dpi_valid_demande' id_demande %}">
+                            {% csrf_token %}
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre d'items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{nombre}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                            <div class="form-check">
+                                    <p class="text-justify">
+                                        En cochant la cdpi du bas,
+                                    </p>
+                                    <p>
+                                        Vous attestez et certifiez par la présente que les informations ci-joint soumis en format électronique sont conforme et complète.
+                                  </p>
+                                  <p>
+                                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                                      <input type="hidden" name="nombre" value="{{nombre}}">
+                                  </p>
+                                  
+                            </div>
+
+                            <div class="card-footer py-3">
+                              <a  class="button-1 float-left" href="{% url 'dpi_list_produit' id_demande %}" style=""><i class="fa fa-angle-double-left"></i> RETOUR</a> 
+                              <button class="button-2 float-right" > ACCEPTER <i class="fa fa-angle-double-right"></i></button>
+                            </div>
+                        </form>
+                        
+                    </div>
+
+{% endblock %}
